@@ -221,7 +221,7 @@ mongoose.connect(`mongodb+srv://${dbUser}:${dbSenha}@cluster0.ck2kxrh.mongodb.ne
 
 
 .then(() =>{
-    app.listen(3000)
+    app.listen( process.env.PORT || 3000)
     console.log('Conectou ao banco!')
 })
 .catch((err) => console.log(err))
