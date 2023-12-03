@@ -34,6 +34,8 @@ app.get('/user/:id', checkToken, async (req, res) => {
 
 })
 
+
+//Requisição: Header Authentication com valor "Bearer {token}"
 function checkToken(req, res, next ) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
@@ -117,10 +119,25 @@ app.post( '/auth/register', async(req, res) => {
         
         await user.save()
 
-        res.status(201).json({mensagem:'Usuário criado com sucesso!'})
+        user.ultimo_login = new Date(); // Atualizar o último login antes de criar o token
+        await user.save(); 
+
+        //criar um token após o usuário ser criado coom sucesso
+        const secret = process.env.SECRET
+        const token = jwt.sign({ id: user._id }, secret, { expiresIn: '30m' });
+
+        res.status(201).json({mensagem:'Usuário criado com sucesso!', 
+        user: {
+            id: user._id,
+                data_criacao: user.createdAt,
+                data_atualizacao: user.updatedAt,
+                ultimo_login: user.ultimo_login, // você precisa definir o último login no seu modelo de usuário
+                token: token
+        }
+        });
 
     } catch(error) {
-        console.log('Erro ao criar usuário', error.message);   //adicionei//
+        console.log('Erro ao criar usuário', error.message);
         res.status(500).json({
             mensagem:'Aconteceu um erro no servidor, tente novamente mais tarde!', 
             })
@@ -157,10 +174,23 @@ app.post('/auth/login', async (req, res) => {
 
     //
     try{
+
+         user.ultimo_login = new Date(); // Atualizar o último login antes de criar o token
+         await user.save();
+
         const secret = process.env.SECRET
         const token = jwt.sign({ id: user._id }, secret, { expiresIn: '30m' });
 
-        res.status(200).json({mensagem: 'Autenticação relizada com sucesso!', token })
+        res.status(200).json({mensagem: 'Autenticação relizada com sucesso!',  
+            user: {
+            id: user._id,
+            data_criacao: user.createdAt,
+            data_atualizacao: user.updatedAt,
+            ultimo_login: user.ultimo_login, // você precisa definir o último login no seu modelo de usuário
+            token: token 
+        } 
+    });
+
         } catch(error) {
         console.log(error);
         console.error('Não autorizado', error.message);
