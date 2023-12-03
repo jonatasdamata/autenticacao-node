@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "lint": "eslint . --fix",
-    "build": "npx eslint . --fix && echo \"Build concluído\""
-  },
+    "build": "npm install && npm run lint && echo \"Build concluído\""
+  }
+  ,
   "keywords": [],
   "author": "",
   "license": "ISC",
