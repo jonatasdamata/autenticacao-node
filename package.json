@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "lint": "eslint . --fix",
-    "build": "npm install && npm run lint && echo \"Build concluído\""
+    "build": "npm install && npm run lint && echo \"Build concluído\"",
+    "vercel-build": "npx mongoose deploy"
   }
   ,
   "keywords": [],
