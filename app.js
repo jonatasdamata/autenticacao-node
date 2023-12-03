@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 
 const app = express()
 
+
 //Configurar JSON response
 app.use(express.json())
 
@@ -131,7 +132,7 @@ app.post( '/auth/register', async(req, res) => {
             id: user._id,
                 data_criacao: user.createdAt,
                 data_atualizacao: user.updatedAt,
-                ultimo_login: user.ultimo_login, // você precisa definir o último login no seu modelo de usuário
+                ultimo_login: user.ultimo_login,
                 token: token
         }
         });
