@@ -4,9 +4,17 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken') 
 
 const app = express()
+
+
+mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority',
+{
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
+
 
 
 //Configurar JSON response
@@ -210,6 +218,7 @@ const dbUser = process.env.DB_USER
 const dbSenha = process.env.DB_PASS
 
 mongoose.connect(`mongodb+srv://${dbUser}:${dbSenha}@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority`)
+
 
 .then(() =>{
     app.listen(3000)
