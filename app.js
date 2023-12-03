@@ -9,11 +9,7 @@ const jwt = require('jsonwebtoken')
 const app = express()
 
 
-mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority',
-{
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-});
+mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority',);
 
 
 
@@ -222,6 +218,6 @@ mongoose.connect(`mongodb+srv://${dbUser}:${dbSenha}@cluster0.ck2kxrh.mongodb.ne
 
 .then(() =>{
     app.listen( process.env.PORT || 3000)
-    console.log('Conectou ao banco!')
+    console.log('Conectou ao banco!') 
 })
 .catch((err) => console.log(err))
