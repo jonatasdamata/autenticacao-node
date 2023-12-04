@@ -4,6 +4,33 @@
 # Sobre o projeto
 Bem-vindo à API de autenticação, uma aplicação RESTful para gerenciamento de usuários, incluindo funcionalidades de cadastro, autenticação e recuperação de informações. Esta API é construída com Node.js, Express, MongoDB e utiliza JSON Web Tokens (JWT) para autenticação.
 
+## URLs das APIs:
+
+-Página Inicial:
+
+https://autenticacaonode-b379a61a797e.herokuapp.com/
+
+-Página de Exemplo:
+
+https://autenticacaonode-b379a61a797e.herokuapp.com/exemplo
+
+-Página de Login: 
+
+https://autenticacaonode-b379a61a797e.herokuapp.com/auth/login
+
+-Página de Registro:
+
+https://autenticacaonode-b379a61a797e.herokuapp.com/auth/register
+
+-Página de Id:
+
+https://autenticacaonode-b379a61a797e.herokuapp.com/user/656c805cb287714bb0c76ee5
+
+
+
+
+
+
 
 ## Página Inicial
 ![Route-public](https://github.com/jonatasdamata/autenticacao-node/assets/144968541/9d274f1e-fe21-4ccb-8029-be646a5af7ce)
@@ -29,12 +56,9 @@ Bem-vindo à API de autenticação, uma aplicação RESTful para gerenciamento d
 
 -Node.js
 
-
 -MongoDB
 
-
 -Express
-
 
 -JSON Web Tokens (JWT)
 
@@ -53,6 +77,9 @@ Bem-vindo à API de autenticação, uma aplicação RESTful para gerenciamento d
 -Testes unitários.
 
 -Criptografia hash na senha e token.
+
+** Hospedagem
+Heroku
 
 
 
