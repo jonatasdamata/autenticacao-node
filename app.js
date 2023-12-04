@@ -73,6 +73,7 @@ function checkToken(req, res, next ) {
 
 
 //Register User 
+
 app.post( '/auth/register', async(req, res) => {
 
     const { name, email, senha, confirmasenha, telefone } = req.body
@@ -97,6 +98,36 @@ app.post( '/auth/register', async(req, res) => {
     if (!telefone || telefone.length === 0) {
         return res.status(422).json({ mensagem: 'Pelo menos um telefone é obrigatório!' });
     }
+    res.status(201).json({ mensagem: 'Usuário registrado com sucesso!'});
+
+app.get('/auth/register', (req, res) => {
+    const { name, email, senha, confirmasenha, telefone } = req.body
+
+    //validations
+    if(!name) {
+        return res.status(422).json({mensagem: 'O nome é obrigatório!'})
+    }
+
+    if(!email) {
+        return res.status(422).json({mensagem: 'O email é obrigatório!'})
+    }
+
+    if(!senha) {
+        return res.status(422).json({mensagem: 'A senha é obrigatória!'})
+    }
+
+    if(senha !== confirmasenha) {
+        return res.status(422).json({mensagem: 'As senhas não conferem!'})
+    }
+
+    if (!telefone || telefone.length === 0) {
+        return res.status(422).json({ mensagem: 'Pelo menos um telefone é obrigatório!' });
+    }   
+    res.status(200).json({ mensagem: 'Página de registro' });
+    });
+
+
+
 
     // Verificar se o usuário já existe
     const userExists = await User.findOne({ email: email})
