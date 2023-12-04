@@ -257,52 +257,67 @@ app.get('/auth/login', (req, res) => {
     res.status(200).json({ mensagem: 'Página de Login' });
 }); 
 
-// Página de exemplo
 app.get('/exemplo', (req, res) => {
     const { name, email, senha, confirmasenha, telefone } = req.query;
     const errors = [];
 
     // Validations
     if (!name) {
-        errors.push({ name: 'Jonatas' });
+        errors.push({ name: 'O nome é obrigatório!' });
     }
 
     if (!email) {
-        errors.push({ email: 'jonatas@teste.com' });
+        errors.push({ email: 'O email é obrigatório!' });
     }
 
     if (!senha) {
-        errors.push({ senha: '123456' });
+        errors.push({ senha: 'A senha é obrigatória!' });
     }
 
     if (!confirmasenha) {
-        errors.push({ confirmasenha: '123456' });
+        errors.push({ confirmasenha: 'A confirmação de senha é obrigatória!' });
     }
 
     if (!telefone) {
-        errors.push({ telefone: '12345678911' });
+        errors.push({ telefone: 'O telefone é obrigatório!' });
     }
 
     if (errors.length > 0) {
-        return res.status(422).json({
-            name: 'Jonatas',
-            email: 'jonatas@teste.com',
-            senha: '123456',
-            confirmasenha: '123456',
-            telefone: '12345678911'
-        });
+        return res.status(422).json({ name: 'Jonatas',
+        email: 'jonatas@teste.com',
+        senha: '123456',
+        confirmasenha: '123456',
+        telefone: '12345678911',
+        mensagem: 'Autenticação realizada com sucesso!',
+        user: {
+        id: '656c805cb287714bb0c76ee5',
+        data_criacao: '2023-12-03T13:19:24.392+00:00',
+        data_atualizacao: '2023-12-04T15:02:38.032+00:00',
+        ultimo_login: '2023-12-04T15:02:38.027+00:00',
+        token: 'token' }
+     });
     }
 
-    // Se não houver erros vai retornar a resposta padrão
+    // Se não houver erros, vamos supor que você tenha um token disponível
+    const token = 'seu_token_aqui'; // Substitua 'seu_token_aqui' pelo valor real do seu token
+
+    // Se não houver erros, vai retornar a resposta padrão com o token
     res.status(200).json({
         name: 'Jonatas',
         email: 'jonatas@teste.com',
         senha: '123456',
         confirmasenha: '123456',
-        telefone: '12345678911'
+        telefone: '12345678911',
+        mensagem: 'Autenticação realizada com sucesso!',
+        user: {
+        id: '656c805cb287714bb0c76ee5',
+        data_criacao: '2023-12-03T13:19:24.392+00:00',
+        data_atualizacao: '2023-12-04T15:02:38.032+00:00',
+        ultimo_login: '2023-12-04T15:02:38.027+00:00',
+        token: token 
+        }
     });
 });
-
 
 
 // Credenciais
