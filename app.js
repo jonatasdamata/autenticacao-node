@@ -210,6 +210,7 @@ mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kx
 
 .then(() =>{
     app.listen(3000)
-    console.log('Conectou ao banco!')  
+    console.log('Conectou ao banco!') 
 }) 
 .catch((err) => console.log(err))
+
