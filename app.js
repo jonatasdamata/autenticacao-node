@@ -1,5 +1,5 @@
 /* global require, process */
-// imports 
+// Imports 
 require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
@@ -223,7 +223,7 @@ app.post('/auth/login', async (req, res) => {
             id: user._id,
             data_criacao: user.createdAt,
             data_atualizacao: user.updatedAt,
-            ultimo_login: user.ultimo_login, // você precisa definir o último login no seu modelo de usuário
+            ultimo_login: user.ultimo_login,
             token: token 
         } 
     });
@@ -256,6 +256,53 @@ app.get('/auth/login', (req, res) => {
 
     res.status(200).json({ mensagem: 'Página de Login' });
 }); 
+
+// Página de exemplo
+app.get('/exemplo', (req, res) => {
+    const { name, email, senha, confirmasenha, telefone } = req.query;
+    const errors = [];
+
+    // Validations
+    if (!name) {
+        errors.push({ name: 'Jonatas' });
+    }
+
+    if (!email) {
+        errors.push({ email: 'jonatas@teste.com' });
+    }
+
+    if (!senha) {
+        errors.push({ senha: '123456' });
+    }
+
+    if (!confirmasenha) {
+        errors.push({ confirmasenha: '123456' });
+    }
+
+    if (!telefone) {
+        errors.push({ telefone: '12345678911' });
+    }
+
+    if (errors.length > 0) {
+        return res.status(422).json({
+            name: 'Jonatas',
+            email: 'jonatas@teste.com',
+            senha: '123456',
+            confirmasenha: '123456',
+            telefone: '12345678911'
+        });
+    }
+
+    // Se não houver erros vai retornar a resposta padrão
+    res.status(200).json({
+        name: 'Jonatas',
+        email: 'jonatas@teste.com',
+        senha: '123456',
+        confirmasenha: '123456',
+        telefone: '12345678911'
+    });
+});
+
 
 
 // Credenciais
