@@ -213,4 +213,3 @@ mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kx
     console.log('Conectou ao banco!') 
 }) 
 .catch((err) => console.log(err))
-
