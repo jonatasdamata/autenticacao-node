@@ -78,8 +78,7 @@ https://autenticacaonode-b379a61a797e.herokuapp.com/user/656c805cb287714bb0c76ee
 
 -Criptografia hash na senha e token.
 
-** Hospedagem
-Heroku
+-Hospedagem: Heroku
 
 
 
