@@ -151,30 +151,36 @@ app.post( '/auth/register', async(req, res) => {
 });
 
 app.get('/auth/register', (req, res) => {
-    const { name, email, senha, confirmasenha, telefone } = req.query
+    const { name, email, senha, confirmasenha, telefone } = req.query;
+    const errors = [];
 
-    //validations
-    if(name) {
-        return res.status(422).json({mensagem: 'O nome é obrigatório!'})
+    // validations
+    if (!name) {
+        errors.push({ name: 'O nome é obrigatório!' });
     }
 
-    if(email) {
-        return res.status(422).json({mensagem: 'O email é obrigatório!'})
+    if (!email) {
+        errors.push({ email: 'O email é obrigatório!' });
     }
 
-    if(senha) {
-        return res.status(422).json({mensagem: 'A senha é obrigatória!'})
+    if (!senha) {
+        errors.push({ senha: 'A senha é obrigatória!' });
     }
 
-    if(confirmasenha) {
-        return res.status(422).json({mensagem: 'As senhas não conferem!'})
+    if (!confirmasenha) {
+        errors.push({ confirmasenha: 'As senhas não conferem!' });
     }
 
-    if (telefone ) {
-        return res.status(422).json({ mensagem: 'Pelo menos um telefone é obrigatório!' });
-    }   
-    res.status(200).json({ mensagem: 'Página de registro',  dadosRecebidos: { name, email, senha, confirmasenha, telefone } });
-    });
+    if (!telefone) {
+        errors.push({ telefone: 'Pelo menos um telefone é obrigatório!' });
+    }
+
+    if (errors.length > 0) {
+        return res.status(422).json({ mensagem: 'Erros de validação, digite os itens para acessar.', errors });
+    }
+
+    res.status(200).json({ mensagem: 'Página de registro', dadosRecebidos: { name, email, senha, confirmasenha, telefone } });
+});
 
 // Rota de Login
 app.post('/auth/login', async (req, res) => {
@@ -232,21 +238,24 @@ app.post('/auth/login', async (req, res) => {
 })
 
 app.get('/auth/login', (req, res) => {
-    const { email, senha } = req.query
+    const { email, senha } = req.query;
+    const errors = [];
 
-    //validations
-
-
-    if(email) {
-        return res.status(422).json({mensagem: 'O email é obrigatório!'})
+    // validations
+    if (!email) {
+        errors.push({ email: 'O email é obrigatório' });
     }
 
-    if(senha) {
-        return res.status(422).json({mensagem: 'A senha é obrigatória!'})
+    if (!senha) {
+        errors.push({ senha: 'A senha é obrigatória' });
     }
-     
-    res.status(200).json({ mensagem: 'Página de Login', email, senha });
-    });
+
+    if (errors.length > 0) {
+        return res.status(422).json({ mensagem: 'Erros de validação', errors });
+    }
+
+    res.status(200).json({ mensagem: 'Página de Login' });
+}); 
 
 
 // Credenciais
