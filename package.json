@@ -3,19 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "14.x",
-    "npm": "6.x"
-  }
-  
-  ,"scripts": {
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
     "lint": "npm install -g eslint && eslint . --fix",
     "build": "npm install && npm run lint && echo \"Build concluído\""
-  
-  }
-  ,
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -30,5 +23,4 @@
     "eslint": "^8.55.0",
     "nodemon": "^3.0.2"
   }
-  
 }
