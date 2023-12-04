@@ -11,7 +11,7 @@ const app = express()
 
 
 //Configurar JSON response
-app.use(express.json())
+app.use(express.json()) 
 
 // Models
 const User = require('./models/User')
@@ -199,22 +199,17 @@ app.post('/auth/login', async (req, res) => {
 
         res.status(500).json({mensagem:'Aconteceu um erro no servidor, tente novamente mais tarde!', 
         })
-        }
-
-   
-
+        }  
 })
 
 
 // Credenciais
-const dbUser = process.env.DB_USER
-const dbSenha = process.env.DB_PASS
 
-mongoose.connect(`mongodb+srv://${dbUser}:${dbSenha}@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority`)
+mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority')
 
 
 .then(() =>{
-    app.listen( process.env.PORT || 3000)
+    app.listen(3000)
     console.log('Conectou ao banco!')  
-})
+}) 
 .catch((err) => console.log(err))
