@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken')
 
 const app = express()
 
-
+const PORT = process.env.PORT || 3000;
 
 //Configurar JSON response
 app.use(express.json()) 
@@ -208,8 +208,10 @@ app.post('/auth/login', async (req, res) => {
 mongoose.connect('mongodb+srv://jhondamataoliveira:5Jhs56TfcdvYUI@cluster0.ck2kxrh.mongodb.net/?retryWrites=true&w=majority')
 
 
-.then(() =>{
-    app.listen(3000)
-    console.log('Conectou ao banco!') 
-}) 
-.catch((err) => console.log(err))
+.then(() => {
+    app.listen(PORT, () => {
+        console.log('Servidor iniciado em http://localhost:' + PORT);
+        console.log('Conectou ao banco!');
+    });
+})
+.catch((err) => console.log(err)); 
